@@ -1,6 +1,8 @@
 import express from 'express';
 import { pool } from '../queries.js';
 import { sendEmail } from '../sendMail.js';
+import { sendEmailPug } from '../sendMailPug.js';
+import { sendEmailHandleBar } from '../sendMailHandleBar.js';
 
 const router = express.Router();
 
@@ -13,7 +15,9 @@ router.post('/', (req, res) => {
     } = req.body;
     pool.query(`insert into usercollectionv1(first_name, last_name, email) values ($1, $2, $3)`, [first_name, last_name, email])
     res.send(`${first_name} has been added to the Database`);
-    sendEmail(first_name, email);
+    sendEmail(first_name, email); // using HTML template for email
+    // sendEmailPug(first_name, email); // using Pug template for email
+    // sendEmailHandleBar(first_name, email); // using Handlebars template for email
 })  
 
 // Get user list - Read
