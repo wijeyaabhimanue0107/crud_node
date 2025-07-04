@@ -7,7 +7,7 @@ const PORT = 5000;
 // const db = require('./queries');
 
 app.use(bodyParser.json());
-app.use('/users', userRoutes);
+app.use('/', userRoutes);
 app.get('/', (req, res) => res.send('HELLO FROM HOMEPAGE'))
 // app.get('/', (req, res));
 app.listen(PORT, () => console.log(`Server running on port: http://localhost:${PORT}`));
